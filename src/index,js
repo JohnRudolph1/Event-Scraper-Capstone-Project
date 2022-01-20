@@ -1,0 +1,10 @@
+const { default: axios } = require("axios");
+
+window.addEventListener ("load", (event) => {
+    const button = document.querySelector("#scrape");
+
+fetch("http://localhost:4200/scrape")
+    // addd event listener to button
+    button.addEventListener()
+});
+

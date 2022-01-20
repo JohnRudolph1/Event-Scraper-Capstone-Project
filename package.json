@@ -1,0 +1,27 @@
+{
+  "name": "puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "eventPageScrape.js",
+  "scripts": {
+    
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnRudolph1/Event-Scraper-Capstone-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnRudolph1/Event-Scraper-Capstone-Project/issues"
+  },
+  "homepage": "https://github.com/JohnRudolph1/Event-Scraper-Capstone-Project#readme",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "puppeteer": "^13.1.1"
+  }
+}
