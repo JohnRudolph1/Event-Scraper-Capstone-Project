@@ -1,10 +1,26 @@
 const { default: axios } = require("axios");
+const getEvents = require("../eventPageScraper");
 
 window.addEventListener ("load", (event) => {
     const button = document.querySelector("#scrape");
 
-fetch("http://localhost:4200/scrape")
+
     // addd event listener to button
-    button.addEventListener()
+    // button.addEventListener("scrape", getEvents())
+    button.addEventListener("click", fetch("http://localhost:4200/scrape"));
 });
 
+// const feedDisplay = document.querySelector("#feed");
+
+// fetch("http://localhost:4200/scrape")
+//   .then((response) => {
+//     return response.json();
+//   })
+//   .then((data) => {
+//     data.forEach((result) => {
+//       const articleItem =
+//         `<div><h3>` + result.title + `</h3><p>` + result.url + `</p></div>`;
+//       feedDisplay.insertAdjacentHTML("beforeend", articleItem);
+//     });
+//   })
+//   .catch((err) => console.log(err));

@@ -4,8 +4,9 @@
   "description": "",
   "main": "eventPageScrape.js",
   "scripts": {
-    
-    "start": "nodemon server.js"
+    "serve": "nodemon server.js",
+    "now": "nodemon index.js",
+    "start": "nodemon eventPageScraper.js"
   },
   "repository": {
     "type": "git",

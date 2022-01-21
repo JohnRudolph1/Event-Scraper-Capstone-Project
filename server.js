@@ -5,11 +5,21 @@ const cors = require("cors");
 const getEvents = require("./eventPageScraper");
 app.use(cors());
 
-const url = "https://www.eventbrite.com/d/mo--st-louis/all-article/";
+// let url = "http://localhost:4200/scrape";
 
-app.get("/scrape", async function (req, res) {
+app.get("/", async  (req, res) => {
   res.json("This is my webscraper");
-  await getEvents();
-  res.json("Scraped");
+});
+
+app.get("/scrape", async (req, res) => {
+  let results = await getEvents()
+  console.log(results)
 });
 app.listen(PORT);
+
+// app.get("/scrape", async function (req, res) {
+//   res.json("This is my webscraper");
+//   await getEvents();
+//   res.json("Scraped");
+// });
+// app.listen(PORT);
