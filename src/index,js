@@ -1,9 +1,0 @@
-const { default: axios } = require("axios");
-
-window.addEventListener("load", (event) => {
-  const allButton = document.querySelector("#scrape");
-
-  allButton.addEventListener("click", async () => {
-    await fetch("http://localhost:4200/scrape");
-  });
-});
