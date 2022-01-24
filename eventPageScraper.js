@@ -1,36 +1,23 @@
-// for (let content of eventResults) {
-//   await content.click();
-//   setTimeout(function () {
-//     //code goes here
-//   }, 2000);
-// let title = document.querySelector(".eds-event-card__formatted-name--is-clamped-three").innerText
-//scraping code goes here
-
-// module.exports = getEvents;
-//loop through all content individually
-//click on each one and scrape page
-//once done page.close or go back
-
-//filter eventContent immediatley
-
-const port = 4200;
 const puppeteer = require("puppeteer");
 
-async function getEvents() {
-  const url = "https://www.eventbrite.com/d/mo--st-louis/all-events/";
-  const browser = await puppeteer.launch({ headless: false });
+const getEvents  = async (url) => {
+  let data = [];
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: false
+  });
+
   const page = await browser.newPage();
-  let totalData = [];
+//"https://www.eventbrite.com/d/mo--st-louis/all-events/"
   await page.goto(url);
   while (
     await page.$(
       "#chevron-right-chunky_svg__eds-icon--chevron-right-chunky_base"
     )
   ) {
-    let data = await page.evaluate(() => {
-      let results = [];
+    const pageResults = await page.evaluate(() => {
       let items = document.querySelectorAll(".eds-event-card-content__content");
-
+      const results = [];
       items.forEach((item) => {
         results.push({
           title: item.querySelector(
@@ -45,21 +32,23 @@ async function getEvents() {
         });
       });
       for (let i = 2; i <= results.length; i += 2) results.splice(i, 1);
-
       return results;
     });
-
-    console.log(data);
-    totalData += data;
-    await page.waitForSelector(
-      "#chevron-right-chunky_svg__eds-icon--chevron-right-chunky_base"
-    );
-    await page.click(
-      "#chevron-right-chunky_svg__eds-icon--chevron-right-chunky_base"
-    );
+    data = data.concat(pageResults);
+    try {
+      await page.waitForSelector(
+        "#chevron-right-chunky_svg__eds-icon--chevron-right-chunky_base"
+      );
+      await page.click(
+        "#chevron-right-chunky_svg__eds-icon--chevron-right-chunky_base"
+      );
+    } catch (error) {
+      console.log(error);
+      break;
+    }
   }
   await browser.close();
-  return totalData;
-}
-getEvents();
+
+ return data
+};
 module.exports = getEvents;

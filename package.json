@@ -6,7 +6,8 @@
   "scripts": {
     "serve": "nodemon server.js",
     "now": "nodemon index.js",
-    "start": "nodemon eventPageScraper.js"
+    "start": "nodemon eventPageScraper.js",
+    "go": "nodemon multiScraper.js"
   },
   "repository": {
     "type": "git",

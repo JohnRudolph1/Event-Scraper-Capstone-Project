@@ -1,29 +1,51 @@
 
 const puppeteer = require("puppeteer");
+const getEvents = require("./eventPageScraper");
 
 (async () => {
     const data = [];
 
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  await page.goto("https://www.eventbrite.com/e/laugh-and-love-featuring-david-mann-sr-and-jonat-tickets-218079490627?aff=ebdssbdestsearch");
-  const h1 = await page.$eval(".listing-hero-body h1", (h1) => h1.textContent);
-  const desc = await page.$eval(".has-user-generated-content strong", (strong) => strong.textContent);
-  const location = await page.$eval(".event-details__data p", (p) => p.textContent);
+  await page.goto(url);
+  while (
+    await page.$(
+      "#chevron-right-chunky_svg__eds-icon--chevron-right-chunky_base"
+    )
+  ) {
+    let data = await page.evaluate(() => {
+      let results = [];
+      let items = document.querySelectorAll(".eds-event-card-content__content");
 
+      items.forEach((item) => {
+        results.push({
+          title: item.querySelector(
+            ".eds-event-card__formatted-name--is-clamped-three"
+          ).innerText,
+          date: item.querySelector(".eds-event-card-content__sub-title")
+            .innerText,
+          Location: item.querySelector(".eds-event-card-content__sub")
+            .innerText,
+          url: item.querySelector("a").getAttribute("href"),
+          // img: item.querySelector("img").getAttribute("src"),
+        });
+      });
+      for (let i = 2; i <= results.length; i += 2) results.splice(i, 1);
 
-//l-mar-top-3 DESCRIPTION
-//event-details__data DATE P p p 
-//micro-ticket-box__btn-wrapper
-// a href link
-data.push (
-h1,
-desc,
-location,
+      return results;
+    });
 
-
+    console.log(data);
+    totalData += data;
+    // await page.waitForSelector(
+    //   "#chevron-right-chunky_svg__eds-icon--chevron-right-chunky_base"
+    // );
+    // await page.click(
+    //   "#chevron-right-chunky_svg__eds-icon--chevron-right-chunky_base"
+    // );
+  }
+  await browser.close();
+  return totalData;
+}
 )
-
-
-  console.log(data);
-})();
+getEvents()
