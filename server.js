@@ -1,4 +1,5 @@
 const PORT = 4200;
+const axios = require("axios");
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -10,11 +11,12 @@ app.use(cors());
 app.get("/", async (req, res) => {
   res.json("This is my webscraper");
 });
-
+//send get request to url/scrape 
 app.get("/scrape", async (req, res) => {
   let results = await getEvents(
     "https://www.eventbrite.com/d/mo--st-louis/all-events/"
   );
+  //prints results to console and responds with seeing the link with json content
   console.log(results);
   res.json(results);
 });

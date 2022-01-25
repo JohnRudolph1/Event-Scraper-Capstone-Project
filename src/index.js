@@ -1,19 +1,20 @@
-const { default: axios } = require("axios");
+// const { default: axios } = require("axios");
+// app.use(cors());
 
-
-window.addEventListener("load", (event) => {
-
+window.addEventListener("load",  (event) => {
   //selector shows which button id will be selected
-  const allButton = document.querySelector("#scrape");
-  const allButton = document.querySelector("#music");
-  const allButton = document.querySelector("#community");
-  const allButton = document.querySelector("#film");
-  const allButton = document.querySelector("#tech");
-  const allButton = document.querySelector("#sports");
-  const allButton = document.querySelector("#outdoors");
+
+  const allButton = document.querySelector("#scrape")
+   document.querySelector("#music");
+   document.querySelector("#community");
+   document.querySelector("#film");
+   document.querySelector("#tech");
+   document.querySelector("#sports");
+   document.querySelector("#outdoors");
 
   allButton.addEventListener("click", async () => {
   //awaits for the fetched src to be called upon
+
     await fetch("http:localhost:4200/scrape");
     await fetch("http:localhost:4200/music");
     await fetch("http:localhost:4200/community");
@@ -23,7 +24,7 @@ window.addEventListener("load", (event) => {
     await fetch("http:localhost:4200/outoors");
   })
 
-  //once called upon render the information into json format
+  //once called upon return(render) the response into json format
     .then((response) => {
       return response.json();
     }).then((data) => {
@@ -45,11 +46,11 @@ window.addEventListener("load", (event) => {
              //innerHTML takes the content inside of the event items 
              //and turns it into the html layout i provided
              allButtons.insertAdjacentHTML("beforeend", eventItems);
-           })
-           //catching and printing errors to the console
-         .catch((err) => console.log(err));
+           })         
           })
         })
+    
+    
 //issues im having are being able to take what has been rendered 
 //into html and making it available on my main html page.
 //i used the localhost a tag with an href bypassing the button altogether and it works 

@@ -25,7 +25,7 @@ const getEvents  = async (url) => {
           ).innerText,
           date: item.querySelector(".eds-event-card-content__sub-title")
             .innerText,
-          Location: item.querySelector(".eds-event-card-content__sub")
+        location: item.querySelector(".eds-event-card-content__sub")
             .innerText,
           url: item.querySelector("a").getAttribute("href"),
           // img: item.querySelector("img").getAttribute("src"),
