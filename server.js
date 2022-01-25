@@ -63,19 +63,6 @@ app.get("/outdoor", async (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.listen(PORT);
 
 // app.get("/scrape", async function (req, res) {
