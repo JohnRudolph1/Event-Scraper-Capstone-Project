@@ -1,14 +1,14 @@
 const puppeteer = require("puppeteer");
 
-const getEvents  = async (url) => {
+const getEvents = async (url) => {
   let data = [];
   const browser = await puppeteer.launch({
     headless: false,
-    defaultViewport: false
+    defaultViewport: false,
   });
 
   const page = await browser.newPage();
-//"https://www.eventbrite.com/d/mo--st-louis/all-events/"
+  //"https://www.eventbrite.com/d/mo--st-louis/all-events/"
   await page.goto(url);
   while (
     await page.$(
@@ -25,7 +25,7 @@ const getEvents  = async (url) => {
           ).innerText,
           date: item.querySelector(".eds-event-card-content__sub-title")
             .innerText,
-        location: item.querySelector(".eds-event-card-content__sub")
+          location: item.querySelector(".eds-event-card-content__sub")
             .innerText,
           url: item.querySelector("a").getAttribute("href"),
           // img: item.querySelector("img").getAttribute("src"),
@@ -49,6 +49,8 @@ const getEvents  = async (url) => {
   }
   await browser.close();
 
- return data
+  return data;
 };
 module.exports = getEvents;
+//if you want to scrape other sites just make a new scraper and export the function
+//then add the function to the server to allow it to fetch from new site
