@@ -7,7 +7,7 @@
     "serve": "nodemon server.js",
     "now": "nodemon index.js",
     "start": "nodemon eventPageScraper.js",
-    "go": "nodemon multiScraper.js"
+    "go": "nodemon single.js"
   },
   "repository": {
     "type": "git",

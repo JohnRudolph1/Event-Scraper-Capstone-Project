@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const getEvents = require("./eventPageScraper");
+const res = require("express/lib/response");
 app.use(cors());
 
 // let url = "http://localhost:4200/scrape";
@@ -11,7 +12,7 @@ app.use(cors());
 app.get("/", async (req, res) => {
   res.json("This is my webscraper");
 });
-//send get request to url/scrape 
+//send get request to url/scrape
 app.get("/scrape", async (req, res) => {
   let results = await getEvents(
     "https://www.eventbrite.com/d/mo--st-louis/all-events/"
@@ -64,7 +65,6 @@ app.get("/outdoor", async (req, res) => {
   res.json(results);
 });
 
-
 app.listen(PORT);
 
 // app.get("/scrape", async function (req, res) {
@@ -73,3 +73,7 @@ app.listen(PORT);
 //   res.json("Scraped");
 // });
 // app.listen(PORT);
+///path be local host
+//res.send()
+//set up api routes that serve up html
+//express vid how to render html
