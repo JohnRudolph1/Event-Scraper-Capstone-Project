@@ -22,7 +22,7 @@ window.addEventListener("load",  (event) => {
               </h3>` +
               `<div><h3> 
               ${article.location}
-              </h3>` +
+              </h3><br>` +
               `<a href = "${article.url}">Event Link</a>
               </div><br><br>`;
             scrape.insertAdjacentHTML("beforeend", eventData);
