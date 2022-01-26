@@ -2,11 +2,13 @@ const PORT = 4200;
 const axios = require("axios");
 const express = require("express");
 const app = express();
+const path = require("path");
+
 const cors = require("cors");
 const getEvents = require("./eventPageScraper");
 const res = require("express/lib/response");
 app.use(cors());
-
+app.use(express.static(path.join(__dirname, "html")));
 // let url = "http://localhost:4200/scrape";
 
 app.get("/", async (req, res) => {
@@ -20,6 +22,7 @@ app.get("/scrape", async (req, res) => {
   //prints results to console and responds with seeing the link with json content
   console.log(results);
   res.json(results);
+  // res.sendFile(path.join(__dirname + "index.html"));
 });
 
 app.get("/community", async (req, res) => {
@@ -28,6 +31,7 @@ app.get("/community", async (req, res) => {
   );
   console.log(results);
   res.json(results);
+  // res.sendFile(path.join(__dirname + "community.html"));
 });
 app.get("/music", async (req, res) => {
   let results = await getEvents(
@@ -35,6 +39,7 @@ app.get("/music", async (req, res) => {
   );
   console.log(results);
   res.json(results);
+  // res.sendFile(path.join(__dirname + "music.html"));
 });
 app.get("/film", async (req, res) => {
   let results = await getEvents(
@@ -42,6 +47,7 @@ app.get("/film", async (req, res) => {
   );
   console.log(results);
   res.json(results);
+  // res.sendFile(path.join(__dirname + "film.html"));
 });
 app.get("/tech", async (req, res) => {
   let results = await getEvents(
@@ -49,6 +55,7 @@ app.get("/tech", async (req, res) => {
   );
   console.log(results);
   res.json(results);
+  // res.sendFile(path.join(__dirname + "tech.html"));
 });
 app.get("/sports", async (req, res) => {
   let results = await getEvents(
@@ -56,13 +63,15 @@ app.get("/sports", async (req, res) => {
   );
   console.log(results);
   res.json(results);
+  // res.sendFile(path.join(__dirname + "sports.html"));
 });
-app.get("/outdoor", async (req, res) => {
+app.get("/outdoors", async (req, res) => {
   let results = await getEvents(
     "https://www.eventbrite.com/d/mo--st-louis/travel-and-outdoor--events/"
   );
   console.log(results);
   res.json(results);
+  // res.sendFile(path.join(__dirname + "outdoors.html"));
 });
 
 app.listen(PORT);
